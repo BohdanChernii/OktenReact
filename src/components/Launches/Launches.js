@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {getLaunches} from "../../gateway";
+import {getLaunches} from "../../service/gateway";
 import Launch from "./Launch/Launch";
 import './Launches.css'
+
 const Launches = () => {
   const [launches,setLaunches] =useState([])
   useEffect(()=>{
