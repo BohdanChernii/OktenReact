@@ -1,0 +1,9 @@
+.launch {
+    width: 25%;
+    margin: auto;
+    padding: 2%;
+}
+
+.launch > img {
+    width: 100%;
+}
