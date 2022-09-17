@@ -2,4 +2,9 @@
     width: 25%;
     border: black 1px solid;
     margin: 1%;
+    padding: 1%;
+}
+.user:hover{
+    transition: 0.8s;
+    scale: 120%;
 }

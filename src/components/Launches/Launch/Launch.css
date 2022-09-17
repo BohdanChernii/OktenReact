@@ -3,7 +3,10 @@
     margin: auto;
     padding: 2%;
 }
-
+.launch:hover {
+    transition: 0.6s;
+    scale: 150%;
+}
 .launch > img {
     width: 100%;
 }
