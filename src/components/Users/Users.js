@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import User from "./User";
 import * as service from "../../service/gateway";
 import './Users.css'
+
 const Users = () => {
   const [users,setUsers]=useState([])
   const getInfo = (user) =>{
