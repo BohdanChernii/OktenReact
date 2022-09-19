@@ -1,0 +1,15 @@
+.main{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  .users{
+    width: 50%;
+  }
+  .info{
+    width: 50%;
+    font-size: 60px;
+  }
+  .posts{
+    flex-grow: 1;
+  }
+}
