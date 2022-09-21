@@ -1,0 +1,16 @@
+.Users{
+  margin: auto;
+  max-width: 1440px;
+}
+.users{
+  &__form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+    margin: auto;
+  }
+  &__list{
+  margin-top: 5%;
+}
+}
