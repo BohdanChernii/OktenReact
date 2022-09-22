@@ -8,7 +8,8 @@ import './Users.scss'
 
 const Users = () => {
   const [users, setUsers] = useState([])
-  const {register, handleSubmit, formState: {errors}, setValue} = useForm({
+  const [disabled,setDisabled] = useState(false)
+  const {register, handleSubmit, formState: {errors}, reset} = useForm({
     defaultValues: {
       name: '',
       phone: '',
@@ -20,15 +21,16 @@ const Users = () => {
     getUsers().then(res => setUsers(res.data))
   }, [])
 
-  const onSubmit = (data) => {
-    console.log(data);
-    postUser(data)
-    users.push({...data, id: 12})
+  const onSubmit = async (data) => {
+    await postUser(data)
+    await users.push({...data, id: 12})
+    await setDisabled(true)
+    await reset()
   }
   return (
     <div>
       <h1>Users</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="users__form">
+      <form onSubmit={handleSubmit(onSubmit)} className="users__form" onClick={()=>setDisabled(false)}>
         <input type="text" className="users__form-input" placeholder='name'  {...register('name', {
           required: true,
           minLength: 3
@@ -39,8 +41,7 @@ const Users = () => {
         <input type="text" className="users__form-input" placeholder='userName'
                {...register('username', {required: true})}/>
         {errors.username && <span>This field is required</span>}
-        <button className="users__form-button">Get Users</button>
-
+        <button className="users__form-button" disabled={disabled}>Send User</button>
       </form>
 
       <div className="users__list">
@@ -48,6 +49,7 @@ const Users = () => {
           <User key={item.id} name={item.name} phone={item.phone} userName={item.username}/>
         ))}
       </div>
+
     </div>
   );
 };
