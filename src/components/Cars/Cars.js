@@ -1,20 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import {useForm} from "react-hook-form";
+import {Container, Stack} from "@mui/material";
+
+import Car from "../Car/Car";
+import Form from "../Form/Form";
+
+import {getCars, postUser, updateUser} from "../../services/cars.services";
+
 import {yupResolver} from "@hookform/resolvers/yup";
 import schema from "../../validation/validate";
 
-import {Container, Stack} from "@mui/material";
-import {getCars, postUser, updateUser} from "../../services/cars.services";
-
 import './Cars.scss'
-import Car from "../Car/Car";
-import Form from "../Form/Form";
 
 const Cars = () => {
   const [cars, setCars] = useState([])
   const [carId, setCardId] = useState(null)
   const [update, setUpdate] = useState(false)
-  const {register, handleSubmit, formState: {errors}, setValue} = useForm({resolver: yupResolver(schema)})
+
+  const {register, handleSubmit, formState: {errors}, setValue, reset} = useForm({resolver: yupResolver(schema)})
 
   useEffect(() => {
     getCars().then(res => setCars(res.data))
@@ -22,9 +25,7 @@ const Cars = () => {
 
   const onSubmit = (data) => {
     postUser(data).then(() => getCars()).then(res => setCars(res.data))
-    setValue('model', '')
-    setValue('price', '')
-    setValue('year', '')
+    reset()
   }
 
   const onUpdate = (data) => {
@@ -32,16 +33,13 @@ const Cars = () => {
     setValue('price', data.price)
     setValue('year', data.year)
     updateUser(carId, data).then(() => getCars()).then(res => setCars(res.data))
-    setValue('model', '')
-    setValue('price', '')
-    setValue('year', '')
+    reset()
   }
 
   const updateCar = (item) => {
     setValue("model", item.model,)
     setValue("year", item.year,)
     setValue("price", item.price,)
-
   }
 
 
