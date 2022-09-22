@@ -1,25 +1,29 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {getComments, postComment} from "../../services/comments.service";
 import Comment from "../Comment/Comment";
 
+import {useForm} from "react-hook-form";
+
 const Comments = () => {
   const [comments, setComments] = useState([])
-  const [postsFormState, setPostsFormState] = useState({title:'',body:''})
+  const {register, formState: {errors}, handleSubmit, setValue} = useForm({defaultValues: {title: '', body: ''}})
 
-  const commentsList = (e) => {
-    e.preventDefault()
+  useEffect(() => {
     getComments().then(res => setComments(res.data))
-    postComment(postsFormState)
+  }, [])
+  const onSubmit = (data) => {
+    postComment(data)
+    comments.unshift(data)
   }
-const onChange = (e)=>{
-    setPostsFormState({...postsFormState,[e.target.name]:e.target.value})
-}
+
   return (
     <div>
       <h1>Comments</h1>
-      <form className="comments__form" onSubmit={(e) => commentsList(e)}>
-        <input type="text" className="comment__form-input" name='title' placeholder='name of comment' value={postsFormState.name} onChange={onChange}/>
-        <input type="text" className="comment__form-input" name='body' placeholder='body of comment' value={postsFormState.name} onChange={onChange}/>
+      <form className="comments__form" onSubmit={handleSubmit(onSubmit)}>
+        <input type="text" className="comment__form-input"
+               placeholder='name of comment' {...register('name', {required: true})}/>
+        <input type="text" className="comment__form-input"
+               placeholder='body of comment' {...register('body', {required: true})}/>
         <button className="comment__form-button">Get comments</button>
       </form>
       <div className="comments__list">
