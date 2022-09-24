@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+
+import {Route, Routes} from "react-router";
+import {Link} from "react-router-dom";
+
+import Albums from "./component/Albums";
+import Todos from "./component/Todos";
+import Comments from "./component/Comments";
+
+import CommentsDetails from "./component/CommentsDetails";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Link className={'link'} to={'/todos'}>Todos</Link>
+      <Link className={'link'} to={'/albums'}>Albums</Link>
+      <Link className={'link'} to={'/comments'}>Comments</Link>
+      <Routes>
+        <Route path={'/todos'} element={<Todos/>}/>
+        <Route path={'/albums'} element={<Albums/>}/>
+        <Route path={'/comments'} element={<Comments/>}/>
+        <Route path={'/detail/:id'} element={<CommentsDetails/>}/>
+        <Route index path={'/'}/>
+      </Routes>
     </div>
   );
 }
