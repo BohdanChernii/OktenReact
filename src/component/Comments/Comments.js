@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {getComments} from "../../services/services";
-import Comment from "../Comment";
+import Comment from "../Comment/Comment";
 
 const Comments = () => {
   const [comments, satComments] = useState([])

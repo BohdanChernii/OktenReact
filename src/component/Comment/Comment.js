@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {Outlet} from "react-router";
 
 const Comment = ({item}) => {
   return (
@@ -9,7 +10,7 @@ const Comment = ({item}) => {
       </h1>
       <p>{item.body}</p>
       <p>{item.email}</p>
-      <Link style={{margin:'0.5rem',display:'block',}} to={`/detail/${item.id}`} state={{...item}}>Comment</Link>
+      <Link style={{margin:'0.5rem',display:'block',}} to={`/posts/${item.id}`} state={{...item}}>Comment</Link>
     </div>
 
   );
