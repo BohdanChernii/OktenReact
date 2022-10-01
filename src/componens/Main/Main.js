@@ -1,4 +1,5 @@
 import React, {useReducer, useState} from 'react';
+import Animals from "../Animals/Animals";
 
 const reducer = (state = null, action) => {
   switch (action.type) {
@@ -21,42 +22,25 @@ const Main = () => {
       <header>
         <h1>ZOO</h1>
       </header>
-      <div>
-        <input type="text" onChange={(e) => setCat({id: Math.random() * 1000, body: e.target.value})}/>
-        <button onClick={(e) => {
-          e.preventDefault()
-          dispatch({type: 'AddCat', payload: cat})
-        }}>create cat
-        </button>
-        <div>
-          {
-            state.cats.map((item, index) => (
-              <div style={{display: 'flex', justifyContent: 'center'}} key={index}>
-                <p>{item.body}</p>
-                <button onClick={() => dispatch({type: 'DeleteCat', payload: item})}>Delete</button>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-      <div>
-        <input type="text" onChange={(e) => setDog({id: Math.random() * 1000, body: e.target.value})}/>
-        <button onClick={(e) => {
-          e.preventDefault()
-          dispatch({type: 'AddDog', payload: dog})
-        }}>create dog
-        </button>
-        <div>
-          {
-            state.dogs.map((item, index) => (
-              <div style={{display: 'flex', justifyContent: 'center'}} key={index}>
-                <p>{item.body}</p>
-                <button onClick={() => dispatch({type: 'DeleteDog', payload: item})}>Delete</button>
-              </div>
-            ))
-          }
-        </div>
-      </div>
+      <Animals
+        setAnimal={setCat}
+        animal={cat}
+        animals={state.cats}
+        dispatch={dispatch}
+        addAnimal={'AddCat'}
+        deleteAnimal={'DeleteCat'}
+        create={'Cat'}
+      />
+      <Animals
+        setAnimal={setDog}
+        animal={dog}
+        animals={state.dogs}
+        dispatch={dispatch}
+        addAnimal={'AddDog'}
+        deleteAnimal={'DeleteDog'}
+        create={'Dog'}
+      />
+
     </>
   );
 };
