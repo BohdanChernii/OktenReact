@@ -1,6 +1,8 @@
 import React, {useReducer, useState} from 'react';
 import Animals from "../Animals/Animals";
 
+let index
+
 const reducer = (state = null, action) => {
   switch (action.type) {
     case 'AddCat':
@@ -8,9 +10,17 @@ const reducer = (state = null, action) => {
     case 'AddDog':
       return {...state, dogs: state.dogs.concat([action.payload])}
     case 'DeleteCat':
-      return {...state, cats: state.cats.filter(item => item.id !== action.payload.id)}
+      index = state.cats.findIndex(item=>item.id === action.payload.id)
+      if (index !== -1){
+        state.cats.splice(index, 1)
+    }
+      return {...state, cats: state.cats}
     case 'DeleteDog':
-      return {...state, dogs: state.dogs.filter(item => item.id !== action.payload.id)}
+      index = state.dogs.findIndex(item=>item.id === action.payload.id)
+      if (index !== -1){
+        state.dogs.splice(index, 1)
+      }
+      return {...state, dogs: state.dogs}
   }
 }
 const Main = () => {

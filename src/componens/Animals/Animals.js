@@ -2,13 +2,19 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 
 const Animals = ({setAnimal, animal, animals, dispatch, addAnimal, deleteAnimal, create}) => {
-  const {register, setValue, handleSubmit} = useForm()
+  const {register, setValue, handleSubmit, reset} = useForm({defaultValues: {field: ''}})
   const onSubmit = async (data) => {
-    dispatch({type: addAnimal, payload: animal})
-    setValue('field', null)
-    if (data.field === null || data.field === '') {
-      setAnimal('')
+    if( data.field !== ''){
+      await dispatch({type: addAnimal, payload: animal})
+      await setAnimal({id: Math.random() * 1000, body: data.field})
+      await setValue('field', null)
     }
+    reset()
+
+  }
+
+  const onDelete = (item) => {
+    dispatch({type: deleteAnimal, payload: item})
   }
 
   return (
@@ -20,10 +26,10 @@ const Animals = ({setAnimal, animal, animals, dispatch, addAnimal, deleteAnimal,
       <div>
         {
           animals.map((item, index) => (
-            <div style={{display: 'flex', justifyContent: 'center'}} key={index}>
+            (<div style={{display: 'flex', justifyContent: 'center'}} key={index}>
               <p>{item.body}</p>
-              <button onClick={() => dispatch({type: deleteAnimal, payload: item})}>Delete</button>
-            </div>
+              <button onClick={() => onDelete(item)}>Delete</button>
+            </div>)
           ))
         }
       </div>
