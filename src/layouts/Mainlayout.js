@@ -2,11 +2,10 @@ import React from 'react';
 
 import {Link, NavLink} from "react-router-dom";
 
-import {Outlet, useLocation, useParams} from "react-router";
+import {Outlet,} from "react-router";
 
 const Mainlayout = () => {
-  const location = useLocation()
-  console.log(location.pathname);
+
   return (
     <>
       <header style={{display: 'flex', justifyContent: "space-evenly", margin: 'auto', maxWidth: '1440px'}}>
