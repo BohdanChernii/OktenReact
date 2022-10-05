@@ -59,5 +59,12 @@
 .child>button{
 position: absolute;
   bottom: 10px;
-
+}
+.link{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+.active{
+  color: red;
 }
