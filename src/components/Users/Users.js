@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
+
 import {useDispatch, useSelector} from "react-redux";
+
 import {usersServices} from "../../services/users.services";
+
 import {ADD_USERS, CHOOSE_USER} from "../../actions/user.actions";
 
 const Users = () => {
@@ -28,4 +31,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export {Users};

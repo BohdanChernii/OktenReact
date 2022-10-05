@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
+
 import {useDispatch} from "react-redux";
+
 import {postsService} from "../../services/posts.service";
+
 import {ADD_POSTS, CHOOSE_POST} from "../../actions/post.actions";
 
 const Posts = () => {
@@ -12,8 +15,9 @@ const Posts = () => {
       payload: res.data
     })).then(res => setPosts(res.payload))
   }, [])
+
   const dispatch = useDispatch()
-  console.log(posts);
+
   return (
     <div className={'parent'}>
       {posts.map(post => (
@@ -27,4 +31,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export {Posts};
