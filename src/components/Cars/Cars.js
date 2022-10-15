@@ -1,10 +1,9 @@
 import React from 'react';
-import Car from "../Car/Car";
 
-const Cars = ({cars,setCars}) => {
+const Cars = () => {
   return (
-    <div style={{display: 'flex', flexWrap: 'wrap'}}>
-      {cars.map(car => <Car key={car.id} car={car} setCars={setCars}/>)}
+    <div>
+      
     </div>
   );
 };

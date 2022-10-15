@@ -1,1 +1,1 @@
-export * from './urls.js'
+export * from './urls'

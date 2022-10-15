@@ -1,4 +1,4 @@
-export * from './Header/Header'
-export * from './CarForm/CarForm'
 export * from './Cars/Cars'
-export * from './Car/Car'
+export * from './Login/Login'
+export * from './Register/Register'
+export * from './Header/Header'
